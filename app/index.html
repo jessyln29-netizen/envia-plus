@@ -9,162 +9,157 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
 :root{
-  --green:#17B26A;
-  --green-dark:#0E9556;
-  --green-soft:#D6F3E3;
-  --dark:#1B1D1B;
-  --dark2:#262926;
-  --bg:#EDF0EC;
-  --card:#E3E7E2;
-  --card2:#F4F6F3;
-  --line:rgba(0,0,0,.08);
-  --txt:#161816;
-  --muted:#8A908A;
-  --muted2:#A7ADA7;
+  --roxo:#5B0CD8;--roxo-light:#7B3DFF;--roxo-dark:#3D0099;
+  --coral:#FB6048;--coral-light:#FF8068;
+  --dark:#111118;--dark2:#1C1C27;
+  --bg:#F6F6FB;
+  --card:#FFFFFF;
+  --card2:#F1F1F7;
+  --line:rgba(17,17,24,.08);
+  --txt:#111118;
+  --muted:#6B7280;
+  --muted2:#A7ADB8;
+  --roxo-soft:rgba(91,12,216,.07);
   --yellow-bg:#FBEBC8;--yellow-tx:#B7791F;
-  --grn-bg:#CBEFDA;--grn-tx:#17803D;
+  --grn-bg:#D1F0DE;--grn-tx:#17803D;
   --red-bg:#F8D6D3;--red-tx:#C0362C;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;}
 body{
-  font-family:'Inter',system-ui,sans-serif;
-  background:#c9cfc9;
-  color:var(--txt);
-  display:flex;align-items:center;justify-content:center;
-  min-height:100dvh;
-  -webkit-font-smoothing:antialiased;
+  font-family:'Inter',system-ui,sans-serif;background:#cfc9dd;color:var(--txt);
+  display:flex;align-items:center;justify-content:center;min-height:100dvh;-webkit-font-smoothing:antialiased;
 }
-/* backdrop pattern */
-body::before{content:"";position:fixed;inset:0;background:
-  radial-gradient(circle at 20% 20%,#d7dcd7,transparent 40%),
-  radial-gradient(circle at 80% 70%,#cdd3cd,transparent 45%),#c9cfc9;z-index:-1;}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(circle at 20% 15%,#d9d0ef,transparent 42%),
+  radial-gradient(circle at 82% 78%,#e7cfe0,transparent 46%),#cfc9dd;}
 
-.phone{
-  position:relative;
-  width:393px;height:852px;max-height:100dvh;max-width:100vw;
-  background:var(--bg);
-  border-radius:46px;
-  box-shadow:0 40px 90px rgba(0,0,0,.35),0 0 0 12px #0b0d0b,0 0 0 13px #2a2d2a;
-  overflow:hidden;
-  display:flex;flex-direction:column;
-}
-@media(max-width:440px){
-  .phone{width:100vw;height:100dvh;border-radius:0;box-shadow:none;}
-}
+.phone{position:relative;width:393px;height:852px;max-height:100dvh;max-width:100vw;background:var(--bg);
+  border-radius:46px;box-shadow:0 40px 90px rgba(40,10,80,.4),0 0 0 12px #0b0b12,0 0 0 13px #2a2a38;overflow:hidden;display:flex;flex-direction:column;}
+@media(max-width:440px){.phone{width:100vw;height:100dvh;border-radius:0;box-shadow:none;}}
 
-/* status bar */
-.statusbar{
-  height:52px;flex:0 0 52px;display:flex;align-items:flex-end;justify-content:space-between;
-  padding:0 26px 8px;font-size:15px;font-weight:600;z-index:40;position:relative;color:var(--txt);
-}
+.statusbar{height:52px;flex:0 0 52px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 8px;font-size:15px;font-weight:600;z-index:40;position:relative;color:var(--txt);}
 .statusbar.dark{color:#fff;}
 .statusbar .icons{display:flex;align-items:center;gap:6px;}
 .statusbar .icons svg{height:13px;width:auto;}
 
-/* screen stage */
 .stage{position:relative;flex:1;overflow:hidden;}
-.screen{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  opacity:0;visibility:hidden;transform:translateX(24px);
-  transition:opacity .28s ease,transform .28s ease,visibility .28s;
-  background:var(--bg);
-}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateX(24px);
+  transition:opacity .28s ease,transform .28s ease,visibility .28s;background:var(--bg);}
 .screen.active{opacity:1;visibility:visible;transform:none;z-index:2;}
 .screen.dark{background:var(--dark);}
 .screen .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 22px 24px;}
 .screen .scroll::-webkit-scrollbar{width:0;}
 
-/* home indicator */
-.home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:rgba(0,0,0,.32);z-index:45;}
-.dark .home-ind,.screen.dark .home-ind{background:rgba(255,255,255,.4);}
+.home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:rgba(17,17,24,.28);z-index:45;}
+.screen.dark .home-ind{background:rgba(255,255,255,.4);}
 
-/* top bar w/ back */
 .topbar{display:flex;align-items:center;gap:14px;padding:6px 4px 14px;}
 .iconbtn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:.15s;}
 .iconbtn:active{transform:scale(.92);}
 .iconbtn svg{width:18px;height:18px;stroke:var(--txt);}
-.dark .iconbtn{border-color:rgba(255,255,255,.2);}
+.dark .iconbtn{border-color:rgba(255,255,255,.22);}
 .dark .iconbtn svg{stroke:#fff;}
 
-/* headings */
 h1.title{font-size:24px;font-weight:800;letter-spacing:-.6px;line-height:1.2;margin-bottom:10px;}
-.sub{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:26px;}
+h1.title .c{color:var(--coral);}
+.sub{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:24px;}
 .dark h1.title{color:#fff;}
 .dark .sub{color:rgba(255,255,255,.6);}
 
-/* inputs */
-.field{width:100%;background:var(--card2);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font-size:15px;font-weight:500;color:var(--txt);font-family:inherit;outline:none;margin-bottom:12px;transition:border-color .15s;}
+/* logo lockup */
+.logo{display:inline-flex;align-items:center;text-decoration:none;line-height:1;}
+.logo .lt{font-weight:800;color:var(--roxo);letter-spacing:-.5px;}
+.logo .lp{font-weight:800;color:var(--coral);margin-left:1px;}
+.logo .la{display:inline-flex;align-items:center;margin-left:2px;}
+.logo.on-dark .lt{color:#fff;}
+
+.field{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;font-size:15px;font-weight:500;color:var(--txt);font-family:inherit;outline:none;margin-bottom:12px;transition:border-color .15s;}
 .field::placeholder{color:var(--muted2);}
-.field:focus{border-color:var(--green);}
+.field:focus{border-color:var(--roxo);}
 .field-row{display:flex;gap:10px;}
-.select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A908A' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px;}
+.field-row .field{flex:1;}
+.select,.selectfake{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px;}
+.selectfake{cursor:pointer;display:flex;align-items:center;min-height:50px;color:var(--txt);}
+.selectfake.ph{color:var(--muted2);}
 label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px;display:block;}
 
-/* buttons */
 .btn{width:100%;border:none;border-radius:16px;padding:17px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .btn:active{transform:translateY(1px);}
-.btn-primary{background:var(--dark);color:var(--green);}
-.btn-primary:disabled{opacity:.45;cursor:not-allowed;}
-.btn-green{background:var(--green);color:#fff;}
+.btn-primary{background:var(--roxo);color:#fff;}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;}
+.btn-coral{background:var(--coral);color:#fff;}
 .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25);}
-.btn-light{background:#fff;color:var(--txt);border:1.5px solid var(--line);}
-.footer-cta{padding:14px 22px calc(14px + env(safe-area-inset-bottom));position:sticky;bottom:0;background:linear-gradient(to top,var(--bg) 70%,transparent);}
-.dark .footer-cta{background:linear-gradient(to top,var(--dark) 70%,transparent);}
+.btn-light{background:var(--card);color:var(--txt);border:1.5px solid var(--line);}
+.footer-cta{padding:14px 22px calc(14px + env(safe-area-inset-bottom));position:sticky;bottom:0;background:linear-gradient(to top,var(--bg) 72%,transparent);}
+.dark .footer-cta{background:linear-gradient(to top,var(--dark) 72%,transparent);}
 
-/* progress */
-.progress{height:4px;background:rgba(0,0,0,.08);border-radius:3px;margin:0 0 22px;overflow:hidden;}
-.progress i{display:block;height:100%;background:var(--green);border-radius:3px;transition:width .4s;}
+.progress{height:5px;background:rgba(17,17,24,.08);border-radius:3px;margin:0 0 22px;overflow:hidden;}
+.progress i{display:block;height:100%;background:var(--roxo);border-radius:3px;transition:width .4s;}
 
-/* ===== LOGIN ===== */
+/* login */
 .login-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 30px;text-align:center;}
-.brand{font-size:38px;font-weight:900;letter-spacing:-1.5px;color:#fff;margin-bottom:60px;}
-.brand b{color:var(--green);}
-.avatar-lg{width:74px;height:74px;border-radius:50%;background:var(--green);color:#fff;font-size:26px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.brand-lg{font-size:40px;margin-bottom:56px;justify-content:center;}
+.brand-lg .la svg{width:34px;height:34px;}
+.avatar-lg{width:74px;height:74px;border-radius:50%;background:var(--roxo);color:#fff;font-size:26px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
 .login-name{color:#fff;font-size:17px;margin-bottom:4px;}
 .login-name b{font-weight:700;}
 .login-mail{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:40px;}
 .faceid{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:44px;color:rgba(255,255,255,.7);font-size:13px;cursor:pointer;}
 .faceid svg{width:34px;height:34px;stroke:rgba(255,255,255,.8);}
 
-/* ===== OTP ===== */
+/* otp */
 .otp{display:flex;gap:12px;justify-content:center;margin:10px 0 24px;}
-.otp input{width:58px;height:68px;border-radius:16px;border:1.5px solid var(--line);background:var(--card2);text-align:center;font-size:28px;font-weight:800;color:var(--txt);outline:none;font-family:inherit;}
-.otp input:focus{border-color:var(--green);}
+.otp input{width:58px;height:68px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);text-align:center;font-size:28px;font-weight:800;color:var(--txt);outline:none;font-family:inherit;}
+.otp input:focus{border-color:var(--roxo);}
 .otp-meta{text-align:center;font-size:14px;color:var(--muted);}
-.otp-meta a{color:var(--green);font-weight:700;text-decoration:none;cursor:pointer;}
+.otp-meta a{color:var(--roxo);font-weight:700;text-decoration:none;cursor:pointer;}
 
-/* ===== SUCCESS ===== */
+/* success */
 .success{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 34px;}
-.checkmark{width:96px;height:96px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:26px;box-shadow:0 12px 30px rgba(23,178,106,.4);}
+.checkmark{width:96px;height:96px;border-radius:50%;background:var(--roxo);display:flex;align-items:center;justify-content:center;margin-bottom:26px;box-shadow:0 14px 34px rgba(91,12,216,.42);}
+.checkmark.coral{background:var(--coral);box-shadow:0 14px 34px rgba(251,96,72,.42);}
 .checkmark svg{width:46px;height:46px;stroke:#fff;stroke-width:3;}
 .success h2{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:14px;}
+.success h2 .c{color:var(--coral);}
 .success p{font-size:15px;color:var(--muted);line-height:1.6;}
+.success p b{color:var(--txt);}
+.center-actions{display:flex;flex-direction:column;gap:12px;width:100%;margin-top:30px;}
+.illus{width:120px;height:120px;border-radius:32px;background:var(--roxo-soft);display:flex;align-items:center;justify-content:center;font-size:58px;margin-bottom:26px;}
 
-/* ===== HOME ===== */
+/* home */
 .home-head{display:flex;align-items:center;justify-content:space-between;padding:6px 2px 18px;}
 .home-head .u{display:flex;align-items:center;gap:11px;}
-.avatar-sm{width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.avatar-sm{width:42px;height:42px;border-radius:50%;background:var(--roxo);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .home-head .u span{font-size:15px;}
 .home-head .u b{font-weight:700;}
 .section-h{display:flex;align-items:center;gap:9px;font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:16px;}
-.section-h .plus{color:var(--green);font-size:24px;line-height:1;}
+.section-h .plus{color:var(--coral);font-size:24px;line-height:1;}
 
 .fx{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
-.fx .flag{width:60px;height:60px;border-radius:50%;font-size:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.fx .flag{width:60px;height:60px;border-radius:50%;font-size:40px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(40,10,80,.12);}
 .fx .flag-wrap{display:flex;align-items:center;gap:6px;}
 .fx .flag-wrap svg{width:16px;height:16px;stroke:var(--muted);}
 .fx .rate{text-align:center;}
 .fx .rate small{font-size:11px;color:var(--muted);display:block;}
 .fx .rate b{font-size:14px;font-weight:600;}
 
-.card{background:var(--card);border-radius:22px;padding:20px 18px;margin-bottom:16px;}
-.card-title{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800;letter-spacing:-.4px;margin-bottom:16px;}
-.card-title .dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green);font-weight:900;}
+.card{background:var(--card);border-radius:22px;padding:20px 18px;margin-bottom:16px;box-shadow:0 4px 20px rgba(40,10,80,.05);}
+.card-title{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:800;letter-spacing:-.4px;margin-bottom:8px;}
+.card-title .dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--roxo);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--roxo);font-weight:900;}
+
+.kyc-banner{background:linear-gradient(120deg,var(--roxo-dark),var(--roxo) 70%);border-radius:20px;padding:18px;display:flex;align-items:center;gap:14px;margin-bottom:16px;cursor:pointer;position:relative;overflow:hidden;}
+.kyc-banner::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 30%,rgba(251,96,72,.35),transparent 55%);}
+.kyc-banner .ki{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:2;font-size:22px;}
+.kyc-banner .kt{position:relative;z-index:2;}
+.kyc-banner .kt b{color:#fff;font-size:15px;display:block;margin-bottom:2px;}
+.kyc-banner .kt span{color:rgba(255,255,255,.72);font-size:12px;line-height:1.4;}
+.kyc-banner .kgo{margin-left:auto;position:relative;z-index:2;}
+.kyc-banner .kgo svg{width:22px;height:22px;stroke:#fff;}
 
 .send-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);gap:10px;}
 .send-row:last-child{border-bottom:none;}
-.send-row .date{font-size:11px;color:var(--muted);position:absolute;transform:translateY(-16px);}
+.date{font-size:11px;color:var(--muted);display:block;margin-top:6px;}
 .sr-info .nm{font-size:15px;font-weight:600;}
 .sr-info .meta{display:flex;align-items:center;gap:7px;margin-top:4px;}
 .sr-info .id{font-size:11px;color:var(--muted);}
@@ -175,100 +170,128 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
 .sr-right{text-align:right;flex-shrink:0;}
 .sr-right .u{font-size:14px;font-weight:700;}
 .sr-right .b{font-size:13px;color:var(--muted);}
-.sr-arrow{flex-shrink:0;}
 .sr-arrow svg{width:20px;height:20px;}
-.see-all{display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:700;padding-top:14px;cursor:pointer;}
-.see-all svg{width:18px;height:18px;stroke:var(--txt);}
+.see-all{display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:700;padding-top:14px;cursor:pointer;color:var(--roxo);}
+.see-all svg{width:18px;height:18px;stroke:var(--roxo);}
 
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.qa{background:var(--card);border-radius:18px;padding:18px 16px;cursor:pointer;transition:.15s;}
+.qa{background:var(--card);border-radius:18px;padding:18px 16px;cursor:pointer;transition:.15s;box-shadow:0 4px 20px rgba(40,10,80,.05);}
 .qa:active{transform:scale(.97);}
-.qa svg{width:22px;height:22px;stroke:var(--txt);margin-bottom:12px;}
+.qa .qi{width:40px;height:40px;border-radius:12px;background:var(--roxo-soft);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.qa .qi svg{width:20px;height:20px;stroke:var(--roxo);}
 .qa span{font-size:14px;font-weight:600;line-height:1.3;display:block;}
 
 .banner-dark{background:var(--dark);border-radius:18px;padding:18px;display:flex;align-items:center;gap:14px;margin-bottom:16px;}
 .banner-dark .ico{width:38px;height:38px;flex-shrink:0;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;}
-.banner-dark .ico svg{width:20px;height:20px;stroke:var(--green);}
-.banner-dark .tx b{color:var(--green);font-size:14px;font-weight:700;display:block;margin-bottom:2px;}
+.banner-dark .ico svg{width:20px;height:20px;stroke:var(--coral);}
+.banner-dark .tx b{color:var(--coral);font-size:14px;font-weight:700;display:block;margin-bottom:2px;}
 .banner-dark .tx span{color:rgba(255,255,255,.6);font-size:11.5px;line-height:1.4;}
 .banner-dark .go{margin-left:auto;flex-shrink:0;}
 .banner-dark .go svg{width:22px;height:22px;stroke:#fff;}
 
-.invite{border-radius:20px;overflow:hidden;position:relative;min-height:150px;background:linear-gradient(120deg,#0f7a45,#17B26A 55%,#1e9e5c);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;}
-.invite::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 40%,rgba(255,255,255,.25),transparent 55%);}
-.invite h4{color:#fff;font-size:19px;font-weight:800;line-height:1.15;max-width:200px;position:relative;z-index:2;margin-bottom:14px;letter-spacing:-.4px;}
-.invite button{position:relative;z-index:2;align-self:flex-start;background:var(--dark);color:#fff;border:none;border-radius:12px;padding:10px 22px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;}
+.invite{border-radius:20px;overflow:hidden;position:relative;min-height:150px;background:linear-gradient(120deg,var(--roxo-dark),var(--roxo) 60%,var(--roxo-light));display:flex;flex-direction:column;justify-content:flex-end;padding:20px;}
+.invite::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 35%,rgba(251,96,72,.4),transparent 55%);}
+.invite h4{color:#fff;font-size:19px;font-weight:800;line-height:1.15;max-width:210px;position:relative;z-index:2;margin-bottom:14px;letter-spacing:-.4px;}
+.invite button{position:relative;z-index:2;align-self:flex-start;background:var(--coral);color:#fff;border:none;border-radius:12px;padding:10px 22px;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer;}
 
-/* ===== SEND (calc) ===== */
+/* send calc */
 .type-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:26px;}
-.type-card{background:var(--card);border-radius:16px;padding:14px 12px;cursor:pointer;border:2px solid transparent;transition:.15s;min-height:88px;}
+.type-card{background:var(--card);border-radius:16px;padding:14px 12px;cursor:pointer;border:2px solid transparent;transition:.15s;min-height:88px;box-shadow:0 4px 16px rgba(40,10,80,.05);}
 .type-card b{font-size:15px;font-weight:800;display:block;margin-bottom:6px;}
 .type-card span{font-size:10.5px;color:var(--muted);line-height:1.35;}
-.type-card.on{background:var(--dark);}
-.type-card.on b{color:var(--green);}
-.type-card.on span{color:rgba(255,255,255,.6);}
+.type-card.on{background:var(--roxo);border-color:var(--roxo);}
+.type-card.on b{color:#fff;}
+.type-card.on span{color:rgba(255,255,255,.75);}
 .rate-center{text-align:center;margin-bottom:24px;}
-.rate-center h3{font-size:24px;font-weight:800;letter-spacing:-.6px;}
+.rate-center h3{font-size:24px;font-weight:800;letter-spacing:-.6px;color:var(--coral);}
 .rate-center span{font-size:14px;color:var(--muted);}
 
-.conv{margin-bottom:8px;}
 .conv .lbl2{font-size:14px;color:var(--muted);margin-bottom:8px;}
 .conv-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;}
 .cur-pill{display:flex;align-items:center;gap:8px;background:var(--dark);color:#fff;border-radius:30px;padding:8px 14px 8px 8px;flex-shrink:0;}
 .cur-pill .cf{width:30px;height:30px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;}
 .cur-pill b{font-size:15px;font-weight:700;}
 .cur-pill svg{width:14px;height:14px;stroke:rgba(255,255,255,.6);}
-.conv-amt{font-size:30px;font-weight:800;color:var(--muted);text-align:right;letter-spacing:-1px;border:none;background:none;outline:none;font-family:inherit;width:100%;min-width:0;}
-.conv-amt.on{color:var(--txt);}
+.conv-amt{font-size:30px;font-weight:800;color:var(--txt);text-align:right;letter-spacing:-1px;border:none;background:none;outline:none;font-family:inherit;width:100%;min-width:0;}
 
 .fees{background:var(--dark);border-radius:18px;padding:20px;margin-bottom:8px;}
-.fees h4{color:#fff;text-align:center;font-size:16px;font-weight:800;margin-bottom:16px;}
+.fees h4{color:var(--coral);text-align:center;font-size:16px;font-weight:800;margin-bottom:16px;}
 .fee-row{display:flex;justify-content:space-between;padding:8px 0;color:rgba(255,255,255,.75);font-size:14px;}
 .fee-row.tot{border-top:1px solid rgba(255,255,255,.15);margin-top:6px;padding-top:14px;color:#fff;font-weight:800;}
 .fee-row.tot small{display:block;font-weight:400;font-size:10px;color:rgba(255,255,255,.5);text-align:right;}
 
-/* selectable list rows */
-.pick{background:var(--card2);border:1.5px solid var(--line);border-radius:16px;padding:15px 16px;display:flex;align-items:center;gap:14px;margin-bottom:12px;cursor:pointer;transition:.15s;}
-.pick.on{border-color:var(--green);background:var(--green-soft);}
-.pick .pav{width:44px;height:44px;border-radius:50%;background:var(--dark);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+/* pick rows */
+.pick{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:15px 16px;display:flex;align-items:center;gap:14px;margin-bottom:12px;cursor:pointer;transition:.15s;}
+.pick.on{border-color:var(--roxo);background:var(--roxo-soft);}
+.pick .pav{width:44px;height:44px;border-radius:50%;background:var(--roxo);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .pick .pav.flag{font-size:24px;background:#fff;}
+.pick .pav.coral{background:var(--coral);}
 .pick .pinfo{flex:1;min-width:0;}
 .pick .pinfo b{font-size:15px;font-weight:600;display:block;}
 .pick .pinfo span{font-size:12px;color:var(--muted);}
 .pick .radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--muted2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:.15s;}
-.pick.on .radio{border-color:var(--green);background:var(--green);}
+.pick.on .radio{border-color:var(--roxo);background:var(--roxo);}
 .pick.on .radio::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff;}
-.pick .cc{width:44px;height:30px;border-radius:6px;background:linear-gradient(135deg,#2b2b2b,#454545);flex-shrink:0;position:relative;}
-.pick .cc::after{content:"";position:absolute;top:8px;left:6px;width:12px;height:9px;border-radius:2px;background:#f0c14b;}
+.pick .chev{margin-left:auto;flex-shrink:0;}
+.pick .chev svg{width:18px;height:18px;stroke:var(--muted2);}
+.pick .cc{width:44px;height:30px;border-radius:6px;background:linear-gradient(135deg,var(--roxo-dark),var(--roxo));flex-shrink:0;position:relative;}
+.pick .cc::after{content:"";position:absolute;top:8px;left:6px;width:12px;height:9px;border-radius:2px;background:var(--coral);}
 
-.addrow{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:700;font-size:15px;padding:8px 2px;cursor:pointer;}
-.addrow .pl{width:34px;height:34px;border-radius:50%;background:var(--green-soft);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.addrow{display:flex;align-items:center;gap:12px;color:var(--roxo);font-weight:700;font-size:15px;padding:10px 2px;cursor:pointer;}
+.addrow .pl{width:34px;height:34px;border-radius:50%;background:var(--roxo-soft);display:flex;align-items:center;justify-content:center;font-size:20px;}
 
-/* confirm summary */
-.summary{background:var(--card2);border:1.5px solid var(--line);border-radius:18px;padding:6px 18px;margin-bottom:16px;}
+/* simple list (picker screens) */
+.list-item{display:flex;align-items:center;gap:14px;padding:15px 6px;border-bottom:1px solid var(--line);cursor:pointer;font-size:15px;font-weight:500;}
+.list-item .fl{font-size:24px;}
+.list-item:active{background:var(--roxo-soft);}
+.search{position:relative;margin-bottom:8px;}
+.search input{padding-left:44px;}
+.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--muted);}
+
+/* camera */
+.cam{flex:1;background:#0c0c12;display:flex;flex-direction:column;position:relative;}
+.cam .cam-top{padding:16px 22px;color:#fff;}
+.cam .cam-top h3{font-size:17px;font-weight:700;margin-bottom:4px;}
+.cam .cam-top p{font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.4;}
+.cam .frame{flex:1;display:flex;align-items:center;justify-content:center;padding:0 30px;}
+.doc-frame{width:100%;aspect-ratio:1.58/1;border-radius:16px;background:linear-gradient(135deg,#3a3a48,#242430);position:relative;box-shadow:0 0 0 3px rgba(255,255,255,.85),0 0 0 12px rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.doc-frame .corner{position:absolute;width:26px;height:26px;border:3px solid var(--coral);}
+.doc-frame .c1{top:12px;left:12px;border-right:none;border-bottom:none;border-radius:6px 0 0 0;}
+.doc-frame .c2{top:12px;right:12px;border-left:none;border-bottom:none;border-radius:0 6px 0 0;}
+.doc-frame .c3{bottom:12px;left:12px;border-right:none;border-top:none;border-radius:0 0 0 6px;}
+.doc-frame .c4{bottom:12px;right:12px;border-left:none;border-top:none;border-radius:0 0 6px 0;}
+.doc-face{color:rgba(255,255,255,.5);font-size:13px;text-align:center;line-height:1.5;}
+.doc-face .em{font-size:40px;display:block;margin-bottom:6px;}
+.cam .shutter{padding:26px 0 30px;display:flex;justify-content:center;}
+.cam .shutter button{width:72px;height:72px;border-radius:50%;background:#fff;border:5px solid rgba(255,255,255,.4);cursor:pointer;transition:.15s;}
+.cam .shutter button:active{transform:scale(.9);}
+
+/* photo preview thumbs */
+.doc-thumb{width:100%;aspect-ratio:1.58/1;border-radius:14px;background:linear-gradient(135deg,#4a3a68,#2a2440);margin-bottom:12px;position:relative;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);font-size:13px;font-weight:600;overflow:hidden;box-shadow:0 6px 18px rgba(40,10,80,.15);}
+.doc-thumb::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent,transparent 22px,rgba(255,255,255,.05) 22px,rgba(255,255,255,.05) 24px);}
+.doc-thumb .tag{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.4);padding:3px 10px;border-radius:20px;font-size:10px;z-index:2;}
+
+/* summary */
+.summary{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:4px 18px;margin-bottom:16px;}
 .sum-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);gap:12px;}
 .sum-row:last-child{border-bottom:none;}
 .sum-row .k{font-size:13px;color:var(--muted);}
 .sum-row .v{font-size:14px;font-weight:600;text-align:right;}
-.sum-row.big .v{font-size:18px;font-weight:800;}
+.sum-row.big .v{font-size:18px;font-weight:800;color:var(--roxo);}
 .sum-row.big .k{font-size:14px;font-weight:600;color:var(--txt);}
 
 /* receipt */
-.receipt{background:#fff;border-radius:20px;margin:6px 0 18px;padding:26px 22px;box-shadow:0 8px 30px rgba(0,0,0,.06);}
-.receipt .rbrand{font-size:26px;font-weight:900;letter-spacing:-1px;text-align:center;margin-bottom:4px;}
-.receipt .rbrand b{color:var(--green);}
+.receipt{background:#fff;border-radius:20px;margin:6px 0 18px;padding:26px 22px;box-shadow:0 8px 30px rgba(40,10,80,.08);}
+.receipt .rbrand{font-size:28px;margin-bottom:6px;justify-content:center;}
+.receipt .rbrand .la svg{width:24px;height:24px;}
 .receipt .rid{text-align:center;font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:22px;}
-.receipt .rrow{display:flex;justify-content:space-between;padding:9px 0;font-size:13px;border-bottom:1px dashed var(--line);}
+.receipt .rrow{display:flex;justify-content:space-between;padding:9px 0;font-size:13px;border-bottom:1px dashed var(--line);gap:10px;}
 .receipt .rrow span{color:var(--muted);}
-.receipt .rrow b{font-weight:600;}
+.receipt .rrow b{font-weight:600;text-align:right;}
 .receipt .rrow.tot{border-bottom:none;border-top:2px solid var(--txt);margin-top:8px;padding-top:14px;font-size:16px;}
-.receipt .rrow.tot b{font-weight:800;color:var(--green);}
-.receipt .stamp{text-align:center;margin-top:20px;color:var(--green);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px;}
-.receipt .stamp svg{width:16px;height:16px;stroke:var(--green);stroke-width:2.5;}
-
-.center-actions{display:flex;flex-direction:column;gap:12px;width:100%;margin-top:30px;}
-
-/* progress dots for onboarding success reuse handled inline */
+.receipt .rrow.tot b{font-weight:800;color:var(--roxo);}
+.receipt .stamp{text-align:center;margin-top:20px;color:var(--roxo);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.receipt .stamp svg{width:16px;height:16px;stroke:var(--roxo);stroke-width:2.5;}
 </style>
 </head>
 <body>
@@ -284,14 +307,14 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
 
   <div class="stage" id="stage">
 
-    <!-- ============ LOGIN ============ -->
+    <!-- LOGIN -->
     <section class="screen dark active" id="s-login">
       <div class="login-wrap">
-        <div class="brand">Envia<b>+</b></div>
+        <div class="logo brand-lg on-dark"><span class="lt">Envia</span><span class="lp">+</span><span class="la"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#FB6048" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
         <div class="avatar-lg">FL</div>
         <div class="login-name">Bem vindo, <b>Felipe Lopez</b></div>
         <div class="login-mail">felipe.lopez@gmail.com</div>
-        <button class="btn btn-green" onclick="go('s-phone')">Entrar</button>
+        <button class="btn btn-primary" onclick="go('s-phone')">Entrar</button>
         <div style="height:12px"></div>
         <button class="btn btn-ghost" onclick="go('s-phone')">Usar outra conta</button>
         <div class="faceid" onclick="go('s-home')">
@@ -302,10 +325,10 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
       <div class="home-ind"></div>
     </section>
 
-    <!-- ============ PHONE ============ -->
+    <!-- PHONE -->
     <section class="screen" id="s-phone">
       <div class="scroll">
-        <div class="topbar"><button class="iconbtn" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div>
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
         <h1 class="title">Verificação do seu número de telefone com um código</h1>
         <p class="sub">Enviaremos um código ao seu número de telefone, ele nos ajuda a manter a sua conta segura.</p>
         <label class="lbl">Código do país</label>
@@ -316,40 +339,143 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
       <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-otp')">Continuar</button></div>
     </section>
 
-    <!-- ============ OTP ============ -->
+    <!-- OTP -->
     <section class="screen" id="s-otp">
       <div class="scroll">
-        <div class="topbar"><button class="iconbtn" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div>
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
         <h1 class="title">Insira o código que recebeu em seu telefone</h1>
         <p class="sub">É muito importante que você digite seu código corretamente, verifique suas mensagens.</p>
         <div class="otp" id="otp">
-          <input maxlength="1" inputmode="numeric" />
-          <input maxlength="1" inputmode="numeric" />
-          <input maxlength="1" inputmode="numeric" />
-          <input maxlength="1" inputmode="numeric" />
+          <input maxlength="1" inputmode="numeric" /><input maxlength="1" inputmode="numeric" /><input maxlength="1" inputmode="numeric" /><input maxlength="1" inputmode="numeric" />
         </div>
         <div class="otp-meta"><span id="otp-timer">2:24</span> · <a onclick="resendOtp()">Reenviar</a></div>
       </div>
-      <div class="footer-cta"><button class="btn btn-primary" id="otp-btn" onclick="go('s-created')">Continuar</button></div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-created')">Continuar</button></div>
     </section>
 
-    <!-- ============ ACCOUNT CREATED ============ -->
+    <!-- ACCOUNT CREATED -->
     <section class="screen" id="s-created">
       <div class="success">
         <div class="checkmark"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h2>Sua conta foi criada com sucesso!</h2>
+        <h2>Sua conta foi criada com <span class="c">sucesso!</span></h2>
         <p>Seja muito bem-vindo(a) à nossa comunidade. Agora você tem acesso a todos os nossos recursos e funcionalidades. Aproveite a sua jornada!</p>
       </div>
       <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-home')">Acessar conta</button></div>
     </section>
 
-    <!-- ============ HOME ============ -->
+    <!-- ===== KYC ===== -->
+    <section class="screen" id="s-kyc-intro">
+      <div class="success">
+        <div class="illus">🪪</div>
+        <h2>Agora falta <span class="c">pouco.</span></h2>
+        <p>Para realizar suas primeiras remessas, precisamos que você verifique sua identidade com um documento válido.</p>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-kyc-doc')">Começar</button></div>
+    </section>
+
+    <section class="screen" id="s-kyc-doc">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:20%"></i></div>
+        <h1 class="title">Escolha um documento</h1>
+        <p class="sub">Escolha o tipo de documento que você tem em mãos.</p>
+        <div class="pick on" data-doc="Passaporte" onclick="pickOne(this,'s-kyc-doc')"><div class="pav coral">🛂</div><div class="pinfo"><b>Passaporte</b><span>Documento internacional</span></div><div class="radio"></div></div>
+        <div class="pick" data-doc="Carteira de identidade" onclick="pickOne(this,'s-kyc-doc')"><div class="pav coral">🪪</div><div class="pinfo"><b>Carteira de identidade</b><span>RG ou ID nacional</span></div><div class="radio"></div></div>
+        <div class="pick" data-doc="Carteira de motorista" onclick="pickOne(this,'s-kyc-doc')"><div class="pav coral">🚗</div><div class="pinfo"><b>Carteira de motorista</b><span>Driver License / CNH</span></div><div class="radio"></div></div>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-kyc-data')">Continuar</button></div>
+    </section>
+
+    <section class="screen" id="s-kyc-data">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:45%"></i></div>
+        <h1 class="title">Preencha os dados da sua carteira de identidade</h1>
+        <p class="sub">Digite as informações exatamente como aparecem no documento.</p>
+        <label class="lbl">Número do documento</label>
+        <input class="field" placeholder="Digite o número" value="12.345.678-9" />
+        <label class="lbl">Órgão expedidor</label>
+        <input class="field" placeholder="Ex.: SSP" value="SSP" />
+        <label class="lbl">Data de emissão</label>
+        <input class="field" placeholder="DD/MM/AAAA" value="14/03/2020" />
+        <label class="lbl">País</label>
+        <div class="field selectfake" onclick="openPicker('s-picker-country','kyc-country')" id="kyc-country">🇧🇷 Brasil</div>
+        <label class="lbl">Estado</label>
+        <div class="field selectfake" onclick="openPicker('s-picker-state','kyc-state')" id="kyc-state">São Paulo</div>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-kyc-photo')">Continuar</button></div>
+    </section>
+
+    <section class="screen" id="s-kyc-photo">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:60%"></i></div>
+        <h1 class="title">Hora de tirar a foto do seu documento</h1>
+        <p class="sub">Dicas para tirar uma ótima foto:</p>
+        <div class="pick" style="cursor:default"><div class="pav coral">💡</div><div class="pinfo"><b>Boa iluminação</b><span>Evite sombras e reflexos sobre o documento.</span></div></div>
+        <div class="pick" style="cursor:default"><div class="pav coral">🖼️</div><div class="pinfo"><b>Superfície plana</b><span>Apoie o documento em uma superfície firme.</span></div></div>
+        <div class="pick" style="cursor:default"><div class="pav coral">🔍</div><div class="pinfo"><b>Enquadre tudo</b><span>Certifique-se de que todas as bordas apareçam.</span></div></div>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-kyc-cam-front')">Tirar foto</button></div>
+    </section>
+
+    <section class="screen dark" id="s-kyc-cam-front">
+      <div class="cam">
+        <div class="cam-top"><h3>Frente do documento</h3><p>Posicione a frente do seu documento dentro da moldura.</p></div>
+        <div class="frame"><div class="doc-frame"><div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div><div class="doc-face"><span class="em">🪪</span>FRENTE</div></div></div>
+        <div class="shutter"><button onclick="go('s-kyc-cam-back')"></button></div>
+      </div>
+      <div class="home-ind"></div>
+    </section>
+
+    <section class="screen dark" id="s-kyc-cam-back">
+      <div class="cam">
+        <div class="cam-top"><h3>Verso do documento</h3><p>Agora posicione o verso dentro da moldura.</p></div>
+        <div class="frame"><div class="doc-frame"><div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div><div class="doc-face"><span class="em">📇</span>VERSO</div></div></div>
+        <div class="shutter"><button onclick="go('s-kyc-confirm')"></button></div>
+      </div>
+      <div class="home-ind"></div>
+    </section>
+
+    <section class="screen" id="s-kyc-confirm">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:85%"></i></div>
+        <h1 class="title">Tudo certo com as fotos?</h1>
+        <p class="sub">Confirme se todos os detalhes estão legíveis.</p>
+        <div class="doc-thumb"><span class="tag">Frente</span>🪪 Documento — frente</div>
+        <div class="doc-thumb"><span class="tag">Verso</span>📇 Documento — verso</div>
+      </div>
+      <div class="footer-cta">
+        <button class="btn btn-primary" onclick="go('s-kyc-done')">Continuar</button>
+        <div style="height:10px"></div>
+        <button class="btn btn-light" onclick="go('s-kyc-cam-front')">Tirar as fotos novamente</button>
+      </div>
+    </section>
+
+    <section class="screen" id="s-kyc-done">
+      <div class="success">
+        <div class="checkmark"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h2>Documentos cadastrados com <span class="c">sucesso!</span></h2>
+        <p>Confirmamos o recebimento de toda a documentação. Já vamos analisar e você recebe um aviso assim que estiver tudo validado.</p>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="kycDone()">Concluir</button></div>
+    </section>
+
+    <!-- HOME -->
     <section class="screen" id="s-home">
       <div class="scroll">
         <div class="home-head">
           <div class="u"><div class="avatar-sm">FL</div><span>Bem vindo, <b>Felipe Lopez</b></span></div>
           <button class="iconbtn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
         </div>
+
+        <div class="kyc-banner" id="kyc-cta" onclick="go('s-kyc-intro')">
+          <div class="ki">🪪</div>
+          <div class="kt"><b>Verifique sua identidade</b><span>Falta pouco para liberar suas remessas</span></div>
+          <span class="kgo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+        </div>
+
         <div class="section-h"><span class="plus">+</span> Calculadora de transferência</div>
         <div class="fx">
           <div class="flag-wrap"><div class="flag">🇺🇸</div><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
@@ -360,26 +486,26 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
 
         <div class="card">
           <div class="card-title"><span class="dot">$</span> Últimos envios</div>
-          <div style="position:relative"><span class="date">Hoje</span></div>
-          <div class="send-row" style="margin-top:16px">
+          <span class="date">Hoje</span>
+          <div class="send-row">
             <div class="sr-info"><div class="nm">Rafael Mendes</div><div class="meta"><span class="badge wait">Em espera</span><span class="id">FL - 183-162105</span></div></div>
             <span class="sr-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
             <div class="sr-right"><div class="u">$31,20</div><div class="b">R$100,00</div></div>
           </div>
-          <div style="position:relative"><span class="date">Hoje</span></div>
-          <div class="send-row" style="margin-top:16px">
+          <span class="date">Hoje</span>
+          <div class="send-row">
             <div class="sr-info"><div class="nm">Rafael Mendes</div><div class="meta"><span class="badge done">Concluída</span><span class="id">FL - 183-162105</span></div></div>
             <span class="sr-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#17803D" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
             <div class="sr-right"><div class="u">$31,20</div><div class="b">R$100,00</div></div>
           </div>
-          <div style="position:relative"><span class="date">21/08/2025</span></div>
-          <div class="send-row" style="margin-top:16px">
+          <span class="date">21/08/2025</span>
+          <div class="send-row">
             <div class="sr-info"><div class="nm">Rafael Mendes</div><div class="meta"><span class="badge done">Concluída</span><span class="id">FL - 183-162105</span></div></div>
             <span class="sr-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#17803D" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
             <div class="sr-right"><div class="u">$31,20</div><div class="b">R$100,00</div></div>
           </div>
-          <div style="position:relative"><span class="date">21/08/2025</span></div>
-          <div class="send-row" style="margin-top:16px">
+          <span class="date">21/08/2025</span>
+          <div class="send-row">
             <div class="sr-info"><div class="nm">Rafael Mendes</div><div class="meta"><span class="badge err">Erro</span><span class="id">FL - 183-162105</span></div></div>
             <span class="sr-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#C0362C" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
             <div class="sr-right"><div class="u">$31,20</div><div class="b">R$100,00</div></div>
@@ -388,10 +514,10 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
         </div>
 
         <div class="grid2">
-          <div class="qa" onclick="go('s-beneficiary')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Beneficiarios</span></div>
-          <div class="qa"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Documentos</span></div>
-          <div class="qa"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span>Métodos de<br>pagamento</span></div>
-          <div class="qa"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg><span>Historicos</span></div>
+          <div class="qa" onclick="go('s-beneficiary')"><div class="qi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span>Beneficiarios</span></div>
+          <div class="qa" onclick="go('s-kyc-intro')"><div class="qi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div><span>Documentos</span></div>
+          <div class="qa"><div class="qi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><span>Métodos de<br>pagamento</span></div>
+          <div class="qa"><div class="qi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><span>Historicos</span></div>
         </div>
 
         <div class="banner-dark">
@@ -400,80 +526,187 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
           <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l4 4-4 4"/></svg></span>
         </div>
 
-        <div class="invite">
-          <h4>Convide os seus amigos e ajude-os a fazer o dinheiro render mais também!</h4>
-          <button>Convidar</button>
-        </div>
+        <div class="invite"><h4>Convide os seus amigos e ajude-os a fazer o dinheiro render mais também!</h4><button>Convidar</button></div>
       </div>
       <div class="home-ind"></div>
     </section>
 
-    <!-- ============ SEND / CALCULATOR ============ -->
+    <!-- SEND / CALC -->
     <section class="screen" id="s-send">
       <div class="scroll">
-        <div class="topbar"><button class="iconbtn" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div>
-        <div class="section-h" style="font-size:19px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L20 4M20 4h-7M20 4v7"/></svg> Escolha o tipo de envio</div>
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="section-h" style="font-size:19px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L20 4M20 4h-7M20 4v7"/></svg> Escolha o tipo de envio</div>
         <div class="type-grid">
           <div class="type-card on" data-type="Pix" onclick="pickType(this)"><b>Pix</b><span>Seu envio chega em algumas horas</span></div>
-          <div class="type-card" data-type="Regular" onclick="pickType(this)"><b>Regular</b><span>Seu envio chega em algumas horas</span></div>
-          <div class="type-card" data-type="Express" onclick="pickType(this)"><b>Express</b><span>Seu envio chega em algumas horas</span></div>
+          <div class="type-card" data-type="Regular" onclick="pickType(this)"><b>Regular</b><span>Seu envio chega em 1 dia útil</span></div>
+          <div class="type-card" data-type="Express" onclick="pickType(this)"><b>Express</b><span>Seu envio chega em minutos</span></div>
         </div>
         <div class="rate-center"><h3>Taxa de câmbio</h3><span>1 USD = 5,4981 BRL</span></div>
         <div class="section-h" style="font-size:18px"><span class="plus">+</span> Calculadora de transferência</div>
         <div class="conv">
           <div class="lbl2">From</div>
-          <div class="conv-row">
-            <div class="cur-pill"><div class="cf">🇺🇸</div><b>USD</b><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-            <input class="conv-amt on" id="usd" inputmode="decimal" value="3,000.00" />
-          </div>
+          <div class="conv-row"><div class="cur-pill"><div class="cf">🇺🇸</div><b>USD</b><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><input class="conv-amt" id="usd" inputmode="decimal" value="3,000.00" /></div>
           <div class="lbl2">To</div>
-          <div class="conv-row">
-            <div class="cur-pill"><div class="cf">🇧🇷</div><b>BRL</b><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-            <input class="conv-amt on" id="brl" readonly value="100,000.00" />
-          </div>
+          <div class="conv-row"><div class="cur-pill"><div class="cf">🇧🇷</div><b>BRL</b><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><input class="conv-amt" id="brl" readonly value="100,000.00" /></div>
         </div>
         <div class="fees">
           <h4>Total de taxas</h4>
           <div class="fee-row"><span>Taxa de serviço (FEE)</span><span id="fee1">105.75 USD</span></div>
           <div class="fee-row"><span>Taxa de transação</span><span id="fee2">75.31 USD</span></div>
           <div class="fee-row"><span>IOF</span><span id="fee3">75.31 USD</span></div>
-          <div class="fee-row tot"><span>Total</span><span><span id="feeT">181.03 USD</span><small>Total amount you'll pay</small></span></div>
+          <div class="fee-row tot"><span>Total</span><span><span id="feeT">256.37 USD</span><small>Total amount you'll pay</small></span></div>
         </div>
       </div>
       <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-beneficiary')">Enviar</button></div>
     </section>
 
-    <!-- ============ SELECT BENEFICIARY ============ -->
+    <!-- SELECT BENEFICIARY -->
     <section class="screen" id="s-beneficiary">
       <div class="scroll">
-        <div class="topbar"><button class="iconbtn" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div>
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
         <h1 class="title">Selecione o beneficiário</h1>
         <p class="sub">Para quem você deseja enviar dinheiro no Brasil?</p>
-        <div class="pick on" data-ben="Rafael Mendes" onclick="pickBen(this)"><div class="pav">RM</div><div class="pinfo"><b>Rafael Mendes</b><span>🇧🇷 CPF ***.456.789-** · Irmão</span></div><div class="radio"></div></div>
-        <div class="pick" data-ben="Ana Souza" onclick="pickBen(this)"><div class="pav">AS</div><div class="pinfo"><b>Ana Souza</b><span>🇧🇷 CPF ***.123.456-** · Mãe</span></div><div class="radio"></div></div>
-        <div class="pick" data-ben="Carlos Lima" onclick="pickBen(this)"><div class="pav">CL</div><div class="pinfo"><b>Carlos Lima</b><span>🇧🇷 CPF ***.987.654-** · Amigo</span></div><div class="radio"></div></div>
-        <div class="addrow"><span class="pl">+</span> Cadastrar novo beneficiário</div>
+        <div id="ben-list">
+          <div class="pick on" data-ben="Rafael Mendes" onclick="pickBen(this)"><div class="pav">RM</div><div class="pinfo"><b>Rafael Mendes</b><span>🇧🇷 CPF ***.456.789-** · Irmão</span></div><div class="radio"></div></div>
+          <div class="pick" data-ben="Ana Souza" onclick="pickBen(this)"><div class="pav">AS</div><div class="pinfo"><b>Ana Souza</b><span>🇧🇷 CPF ***.123.456-** · Mãe</span></div><div class="radio"></div></div>
+        </div>
+        <div class="addrow" onclick="go('s-ben-intro')"><span class="pl">+</span> Cadastrar novo beneficiário</div>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-motivo')">Continuar</button></div>
+    </section>
+
+    <!-- ===== BENEFICIARY REGISTER ===== -->
+    <section class="screen" id="s-ben-intro">
+      <div class="success">
+        <div class="illus">🧑‍🤝‍🧑</div>
+        <h2>Vamos cadastrar o <span class="c">beneficiário</span></h2>
+        <p>Precisamos de algumas informações da pessoa que vai receber o dinheiro no Brasil. É rápido!</p>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-ben-country')">Continuar</button></div>
+    </section>
+
+    <section class="screen" id="s-ben-country">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:25%"></i></div>
+        <h1 class="title">Selecione o país do beneficiário</h1>
+        <p class="sub">Para qual país você vai enviar?</p>
+        <div class="pick on" data-c="🇧🇷 Brasil" onclick="pickOne(this,'s-ben-country')"><div class="pav flag">🇧🇷</div><div class="pinfo"><b>Brasil</b><span>Real (BRL)</span></div><div class="radio"></div></div>
+        <div class="pick" data-c="🇵🇹 Portugal" onclick="pickOne(this,'s-ben-country')"><div class="pav flag">🇵🇹</div><div class="pinfo"><b>Portugal</b><span>Euro (EUR)</span></div><div class="radio"></div></div>
+        <div class="pick" data-c="🇲🇽 México" onclick="pickOne(this,'s-ben-country')"><div class="pav flag">🇲🇽</div><div class="pinfo"><b>México</b><span>Peso (MXN)</span></div><div class="radio"></div></div>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-ben-info')">Continuar</button></div>
+    </section>
+
+    <section class="screen" id="s-ben-info">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:50%"></i></div>
+        <h1 class="title">Informações do beneficiário</h1>
+        <p class="sub">Preencha os dados da pessoa que vai receber.</p>
+        <label class="lbl">Nome completo</label>
+        <input class="field" id="ben-name" placeholder="Ex.: Maria Silva" value="Lucas Dias" />
+        <label class="lbl">CPF ou CNPJ</label>
+        <input class="field" placeholder="000.000.000-00" value="123.456.789-00" />
+        <label class="lbl">Data de nascimento</label>
+        <input class="field" placeholder="DD/MM/AAAA" value="10/05/1992" />
+        <label class="lbl">Celular</label>
+        <input class="field" type="tel" placeholder="(00) 00000-0000" value="(21) 99876-5432" />
+        <label class="lbl">Parentesco</label>
+        <div class="field selectfake ph" id="ben-parent" onclick="openPicker('s-picker-parent','ben-parent')">Selecione o parentesco</div>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-ben-address')">Continuar</button></div>
+    </section>
+
+    <section class="screen" id="s-ben-address">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:70%"></i></div>
+        <h1 class="title">Endereço do beneficiário</h1>
+        <p class="sub">Complete as informações abaixo.</p>
+        <label class="lbl">CEP</label>
+        <input class="field" placeholder="00000-000" value="20031-050" />
+        <label class="lbl">Endereço</label>
+        <input class="field" placeholder="Rua, avenida..." value="Av. Rio Branco" />
+        <div class="field-row">
+          <div style="flex:.5"><label class="lbl">Número</label><input class="field" placeholder="Nº" value="120" /></div>
+          <div style="flex:1"><label class="lbl">Complemento</label><input class="field" placeholder="Apto, bloco" value="Apto 802" /></div>
+        </div>
+        <label class="lbl">Cidade</label>
+        <input class="field" value="Rio de Janeiro" />
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-ben-acct-type')">Continuar</button></div>
+    </section>
+
+    <section class="screen" id="s-ben-acct-type">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:82%"></i></div>
+        <h1 class="title">Conta bancária do beneficiário</h1>
+        <p class="sub">Selecione o tipo de conta para onde o dinheiro vai.</p>
+        <div class="pick on" data-t="Conta corrente" onclick="pickOne(this,'s-ben-acct-type')"><div class="pav coral">🏦</div><div class="pinfo"><b>Conta corrente</b><span>Conta bancária tradicional</span></div><div class="radio"></div></div>
+        <div class="pick" data-t="Conta poupança" onclick="pickOne(this,'s-ben-acct-type')"><div class="pav coral">🐷</div><div class="pinfo"><b>Conta poupança</b><span>Poupança</span></div><div class="radio"></div></div>
+        <div class="pick" data-t="Chave Pix" onclick="pickOne(this,'s-ben-acct-type')"><div class="pav coral">⚡</div><div class="pinfo"><b>Chave Pix</b><span>CPF, e-mail ou telefone</span></div><div class="radio"></div></div>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-ben-acct-data')">Continuar</button></div>
+    </section>
+
+    <section class="screen" id="s-ben-acct-data">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <div class="progress"><i style="width:92%"></i></div>
+        <h1 class="title">Dados da conta</h1>
+        <p class="sub">Preencha os dados da conta do beneficiário.</p>
+        <label class="lbl">Banco</label>
+        <div class="field selectfake ph" id="ben-bank" onclick="openPicker('s-picker-bank','ben-bank')">Selecione o banco</div>
+        <label class="lbl">Agência</label>
+        <input class="field" placeholder="0000" value="1234" />
+        <label class="lbl">Número da conta</label>
+        <input class="field" placeholder="00000-0" value="56789-0" />
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-ben-done')">Cadastrar beneficiário</button></div>
+    </section>
+
+    <section class="screen" id="s-ben-done">
+      <div class="success">
+        <div class="checkmark"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h2>Beneficiário cadastrado com <span class="c">sucesso!</span></h2>
+        <p>Agora <b id="ben-done-name">Lucas Dias</b> está na sua lista de beneficiários e você já pode enviar dinheiro.</p>
+      </div>
+      <div class="footer-cta"><button class="btn btn-primary" onclick="benDone()">Continuar</button></div>
+    </section>
+
+    <!-- MOTIVO -->
+    <section class="screen" id="s-motivo">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <h1 class="title">Selecione o motivo</h1>
+        <p class="sub">Por que você está enviando este dinheiro?</p>
+        <div class="pick on" data-m="Ajuda familiar" onclick="pickOne(this,'s-motivo')"><div class="pav coral">💜</div><div class="pinfo"><b>Ajuda familiar</b></div><div class="radio"></div></div>
+        <div class="pick" data-m="Pagamento de serviço" onclick="pickOne(this,'s-motivo')"><div class="pav coral">🧾</div><div class="pinfo"><b>Pagamento de serviço</b></div><div class="radio"></div></div>
+        <div class="pick" data-m="Compra / venda" onclick="pickOne(this,'s-motivo')"><div class="pav coral">🛍️</div><div class="pinfo"><b>Compra / venda</b></div><div class="radio"></div></div>
+        <div class="pick" data-m="Investimento" onclick="pickOne(this,'s-motivo')"><div class="pav coral">📈</div><div class="pinfo"><b>Investimento</b></div><div class="radio"></div></div>
       </div>
       <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-payment')">Continuar</button></div>
     </section>
 
-    <!-- ============ PAYMENT METHOD ============ -->
+    <!-- PAYMENT -->
     <section class="screen" id="s-payment">
       <div class="scroll">
-        <div class="topbar"><button class="iconbtn" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div>
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
         <h1 class="title">Método de pagamento</h1>
         <p class="sub">Como você quer pagar por esta transferência?</p>
         <div class="pick on" data-pay="Cartão de crédito •••• 4242" onclick="pickPay(this)"><div class="cc"></div><div class="pinfo"><b>Cartão de crédito</b><span>Mastercard •••• 4242</span></div><div class="radio"></div></div>
-        <div class="pick" data-pay="Pix (saldo Envia+)" onclick="pickPay(this)"><div class="pav flag">⚡</div><div class="pinfo"><b>Saldo Envia+</b><span>Disponível: $2.480,00</span></div><div class="radio"></div></div>
+        <div class="pick" data-pay="Saldo Envia+" onclick="pickPay(this)"><div class="pav flag">⚡</div><div class="pinfo"><b>Saldo Envia+</b><span>Disponível: $2.480,00</span></div><div class="radio"></div></div>
         <div class="addrow"><span class="pl">+</span> Adicionar cartão de crédito</div>
       </div>
       <div class="footer-cta"><button class="btn btn-primary" onclick="fillConfirm();go('s-confirm')">Continuar</button></div>
     </section>
 
-    <!-- ============ CONFIRM ============ -->
+    <!-- CONFIRM -->
     <section class="screen" id="s-confirm">
       <div class="scroll">
-        <div class="topbar"><button class="iconbtn" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div>
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
         <h1 class="title">Confirme os dados da transferência</h1>
         <p class="sub">Revise as informações antes de concluir o envio.</p>
         <div class="summary">
@@ -481,23 +714,24 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
           <div class="sum-row"><span class="k">Beneficiário recebe</span><span class="v" id="c-brl">R$100.000,00</span></div>
           <div class="sum-row"><span class="k">Tipo de envio</span><span class="v" id="c-type">Pix</span></div>
           <div class="sum-row"><span class="k">Beneficiário</span><span class="v" id="c-ben">Rafael Mendes</span></div>
+          <div class="sum-row"><span class="k">Motivo</span><span class="v" id="c-motivo">Ajuda familiar</span></div>
           <div class="sum-row"><span class="k">Conta bancária</span><span class="v">Banco do Brasil · Ag 1234 · CC 56789-0</span></div>
           <div class="sum-row"><span class="k">Pagamento</span><span class="v" id="c-pay">Cartão de crédito •••• 4242</span></div>
         </div>
         <div class="summary">
-          <div class="sum-row"><span class="k">Total de taxas</span><span class="v" id="c-fees">181.03 USD</span></div>
-          <div class="sum-row big"><span class="k">Total a pagar</span><span class="v" id="c-total">$3,181.03</span></div>
+          <div class="sum-row"><span class="k">Total de taxas</span><span class="v" id="c-fees">256.37 USD</span></div>
+          <div class="sum-row big"><span class="k">Total a pagar</span><span class="v" id="c-total">$3,256.37</span></div>
         </div>
       </div>
-      <div class="footer-cta"><button class="btn btn-green" onclick="go('s-sent')">Confirmar e enviar</button></div>
+      <div class="footer-cta"><button class="btn btn-coral" onclick="go('s-sent')">Confirmar e enviar</button></div>
     </section>
 
-    <!-- ============ SENT SUCCESS ============ -->
+    <!-- SENT -->
     <section class="screen" id="s-sent">
       <div class="success">
         <div class="checkmark"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h2>Remessa enviada com sucesso!</h2>
-        <p>Sua transferência para <b id="sent-ben">Rafael Mendes</b> foi iniciada e está a caminho. Você pode acompanhar o status pela Home.</p>
+        <h2>Remessa enviada com <span class="c">sucesso!</span></h2>
+        <p>Sua transferência para <b id="sent-ben">Rafael Mendes</b> foi iniciada e está a caminho. Acompanhe o status pela Home.</p>
         <div class="center-actions">
           <button class="btn btn-primary" onclick="go('s-receipt')">Ver comprovante</button>
           <button class="btn btn-light" onclick="go('s-home')">Voltar ao início</button>
@@ -506,102 +740,187 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
       <div class="home-ind"></div>
     </section>
 
-    <!-- ============ RECEIPT ============ -->
+    <!-- RECEIPT -->
     <section class="screen" id="s-receipt">
       <div class="scroll">
-        <div class="topbar"><button class="iconbtn" onclick="go('s-home')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div>
+        <div class="topbar"><button class="iconbtn" onclick="go('s-home')">${'<'}</button></div>
         <div class="receipt">
-          <div class="rbrand">Envia<b>+</b></div>
+          <div class="logo rbrand"><span class="lt">Envia</span><span class="lp">+</span><span class="la"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#FB6048" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
           <div class="rid">FL - 183-162309</div>
           <div class="rrow"><span>Data</span><b>27/07/2026 · 09:41</b></div>
           <div class="rrow"><span>Remetente</span><b>Felipe Lopez</b></div>
           <div class="rrow"><span>Beneficiário</span><b id="r-ben">Rafael Mendes</b></div>
           <div class="rrow"><span>Conta</span><b>Banco do Brasil · CC 56789-0</b></div>
+          <div class="rrow"><span>Motivo</span><b id="r-motivo">Ajuda familiar</b></div>
           <div class="rrow"><span>Tipo de envio</span><b id="r-type">Pix</b></div>
           <div class="rrow"><span>Valor enviado</span><b id="r-usd">$3,000.00</b></div>
           <div class="rrow"><span>Câmbio</span><b>1 USD = 5,4981 BRL</b></div>
-          <div class="rrow"><span>Taxa de serviço</span><b>105.75 USD</b></div>
-          <div class="rrow"><span>Taxa de transação</span><b>75.31 USD</b></div>
-          <div class="rrow"><span>IOF</span><b>75.31 USD</b></div>
+          <div class="rrow"><span>Total de taxas</span><b id="r-fees">256.37 USD</b></div>
           <div class="rrow"><span>Valor recebido</span><b id="r-brl">R$100.000,00</b></div>
-          <div class="rrow tot"><span>Total pago</span><b id="r-total">$3,181.03</b></div>
+          <div class="rrow tot"><span>Total pago</span><b id="r-total">$3,256.37</b></div>
           <div class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Pagamento confirmado</div>
         </div>
       </div>
       <div class="footer-cta"><button class="btn btn-primary" onclick="go('s-home')">Concluir</button></div>
     </section>
 
+    <!-- ===== PICKER SCREENS ===== -->
+    <section class="screen" id="s-picker-country">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <h1 class="title">Selecione o país</h1>
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input class="field" placeholder="Buscar" /></div>
+        <div class="list-item" onclick="choose('kyc-country','🇧🇷 Brasil')"><span class="fl">🇧🇷</span> Brasil</div>
+        <div class="list-item" onclick="choose('kyc-country','🇺🇸 Estados Unidos')"><span class="fl">🇺🇸</span> Estados Unidos</div>
+        <div class="list-item" onclick="choose('kyc-country','🇵🇹 Portugal')"><span class="fl">🇵🇹</span> Portugal</div>
+        <div class="list-item" onclick="choose('kyc-country','🇦🇷 Argentina')"><span class="fl">🇦🇷</span> Argentina</div>
+        <div class="list-item" onclick="choose('kyc-country','🇲🇽 México')"><span class="fl">🇲🇽</span> México</div>
+        <div class="list-item" onclick="choose('kyc-country','🇨🇦 Canadá')"><span class="fl">🇨🇦</span> Canadá</div>
+      </div>
+    </section>
+
+    <section class="screen" id="s-picker-state">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <h1 class="title">Selecione o estado</h1>
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input class="field" placeholder="Buscar" /></div>
+        <div class="list-item" onclick="choose('kyc-state','São Paulo')">São Paulo</div>
+        <div class="list-item" onclick="choose('kyc-state','Rio de Janeiro')">Rio de Janeiro</div>
+        <div class="list-item" onclick="choose('kyc-state','Minas Gerais')">Minas Gerais</div>
+        <div class="list-item" onclick="choose('kyc-state','Bahia')">Bahia</div>
+        <div class="list-item" onclick="choose('kyc-state','Paraná')">Paraná</div>
+        <div class="list-item" onclick="choose('kyc-state','Ceará')">Ceará</div>
+      </div>
+    </section>
+
+    <section class="screen" id="s-picker-parent">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <h1 class="title">Escolha o parentesco</h1>
+        <p class="sub">Qual a sua relação com o beneficiário?</p>
+        <div class="list-item" onclick="choose('ben-parent','Cônjuge')">Cônjuge</div>
+        <div class="list-item" onclick="choose('ben-parent','Filho(a)')">Filho(a)</div>
+        <div class="list-item" onclick="choose('ben-parent','Pai / Mãe')">Pai / Mãe</div>
+        <div class="list-item" onclick="choose('ben-parent','Irmão(ã)')">Irmão(ã)</div>
+        <div class="list-item" onclick="choose('ben-parent','Amigo(a)')">Amigo(a)</div>
+        <div class="list-item" onclick="choose('ben-parent','Outro')">Outro</div>
+      </div>
+    </section>
+
+    <section class="screen" id="s-picker-bank">
+      <div class="scroll">
+        <div class="topbar"><button class="iconbtn" onclick="back()">${'<'}</button></div>
+        <h1 class="title">Selecione o banco</h1>
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input class="field" placeholder="Buscar banco" /></div>
+        <div class="list-item" onclick="choose('ben-bank','001 · Banco do Brasil')">001 · Banco do Brasil</div>
+        <div class="list-item" onclick="choose('ben-bank','341 · Itaú Unibanco')">341 · Itaú Unibanco</div>
+        <div class="list-item" onclick="choose('ben-bank','237 · Bradesco')">237 · Bradesco</div>
+        <div class="list-item" onclick="choose('ben-bank','260 · Nubank')">260 · Nubank</div>
+        <div class="list-item" onclick="choose('ben-bank','077 · Inter')">077 · Inter</div>
+        <div class="list-item" onclick="choose('ben-bank','336 · C6 Bank')">336 · C6 Bank</div>
+        <div class="list-item" onclick="choose('ben-bank','104 · Caixa Econômica')">104 · Caixa Econômica</div>
+      </div>
+    </section>
+
   </div>
 </div>
 
 <script>
-/* ---------- navigation ---------- */
+/* back-chevron injected into iconbtns that contain the placeholder char */
+document.querySelectorAll('.iconbtn').forEach(b=>{
+  if(!b.querySelector('svg')){b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';}
+});
+
+/* nav */
 const stack=['s-login'];
-const darkScreens=new Set(['s-login']);
+const darkScreens=new Set(['s-login','s-kyc-cam-front','s-kyc-cam-back']);
 function setStatus(id){document.getElementById('statusbar').classList.toggle('dark',darkScreens.has(id));}
-function go(id){
+function show(id){
   const cur=document.querySelector('.screen.active');
   const next=document.getElementById(id);
   if(cur===next)return;
   if(cur)cur.classList.remove('active');
   next.classList.add('active');
-  next.querySelector('.scroll')&&(next.querySelector('.scroll').scrollTop=0);
-  if(stack[stack.length-1]!==id)stack.push(id);
+  const sc=next.querySelector('.scroll'); if(sc)sc.scrollTop=0;
   setStatus(id);
 }
-function back(){
-  if(stack.length>1){stack.pop();const prev=stack[stack.length-1];
-    document.querySelector('.screen.active').classList.remove('active');
-    document.getElementById(prev).classList.add('active');setStatus(prev);}
-}
+function go(id){show(id); if(stack[stack.length-1]!==id)stack.push(id);}
+function back(){ if(stack.length>1){stack.pop();show(stack[stack.length-1]);} }
 
-/* ---------- state ---------- */
-const state={type:'Pix',usd:3000,rate:5.4981,ben:'Rafael Mendes',pay:'Cartão de crédito •••• 4242'};
+/* state */
+const state={type:'Pix',usd:3000,rate:5.4981,ben:'Rafael Mendes',pay:'Cartão de crédito •••• 4242',motivo:'Ajuda familiar'};
 const nUS=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 const nBR=n=>n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 
-/* ---------- calculator ---------- */
+/* calculator */
 function recalc(){
-  const brl=state.usd*state.rate;
-  document.getElementById('brl').value=nBR(brl);
-  const fee1=state.usd*0.03525, fee2=state.usd*0.0251, fee3=state.usd*0.0251;
-  document.getElementById('fee1').textContent=nUS(fee1)+' USD';
-  document.getElementById('fee2').textContent=nUS(fee2)+' USD';
-  document.getElementById('fee3').textContent=nUS(fee3)+' USD';
-  document.getElementById('feeT').textContent=nUS(fee1+fee2+fee3)+' USD';
+  document.getElementById('brl').value=nBR(state.usd*state.rate);
+  const f1=state.usd*0.03525,f2=state.usd*0.0251,f3=state.usd*0.0251;
+  document.getElementById('fee1').textContent=nUS(f1)+' USD';
+  document.getElementById('fee2').textContent=nUS(f2)+' USD';
+  document.getElementById('fee3').textContent=nUS(f3)+' USD';
+  document.getElementById('feeT').textContent=nUS(f1+f2+f3)+' USD';
 }
-document.getElementById('usd').addEventListener('input',function(){
-  const raw=this.value.replace(/[^0-9.]/g,'');
-  state.usd=parseFloat(raw)||0;recalc();
-});
+document.getElementById('usd').addEventListener('input',function(){state.usd=parseFloat(this.value.replace(/[^0-9.]/g,''))||0;recalc();});
 document.getElementById('usd').addEventListener('blur',function(){this.value=nUS(state.usd);});
+recalc();
 
-/* ---------- pickers ---------- */
+/* pickers */
 function pickType(el){document.querySelectorAll('#s-send .type-card').forEach(t=>t.classList.remove('on'));el.classList.add('on');state.type=el.dataset.type;}
 function pickBen(el){document.querySelectorAll('#s-beneficiary .pick').forEach(p=>p.classList.remove('on'));el.classList.add('on');state.ben=el.dataset.ben;}
 function pickPay(el){document.querySelectorAll('#s-payment .pick').forEach(p=>p.classList.remove('on'));el.classList.add('on');state.pay=el.dataset.pay;}
+function pickOne(el,screenId){document.querySelectorAll('#'+screenId+' .pick').forEach(p=>p.classList.remove('on'));el.classList.add('on');
+  if(el.dataset.m)state.motivo=el.dataset.m;}
 
-/* ---------- confirm/receipt fill ---------- */
-function fillConfirm(){
-  const brl=state.usd*state.rate;
-  const feeT=state.usd*(0.03525+0.0251+0.0251);
-  const total=state.usd+feeT;
-  const set=(id,v)=>document.getElementById(id).textContent=v;
-  set('c-usd','$'+nUS(state.usd));set('c-brl','R$'+nBR(brl));set('c-type',state.type);
-  set('c-ben',state.ben);set('c-pay',state.pay);set('c-fees',nUS(feeT)+' USD');set('c-total','$'+nUS(total));
-  set('sent-ben',state.ben);
-  set('r-ben',state.ben);set('r-type',state.type);set('r-usd','$'+nUS(state.usd));
-  set('r-brl','R$'+nBR(brl));set('r-total','$'+nUS(total));
+/* list-picker screens that write into a field then return */
+let pickerReturn=null;
+function openPicker(pickerId,fieldId){pickerReturn=fieldId;go(pickerId);}
+function choose(fieldId,val){
+  const f=document.getElementById(fieldId);
+  f.textContent=val;f.classList.remove('ph');
+  back();
 }
 
-/* ---------- otp behaviour ---------- */
+/* confirm/receipt fill */
+function fillConfirm(){
+  const brl=state.usd*state.rate, feeT=state.usd*(0.03525+0.0251+0.0251), total=state.usd+feeT;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('c-usd','$'+nUS(state.usd));set('c-brl','R$'+nBR(brl));set('c-type',state.type);set('c-ben',state.ben);
+  set('c-motivo',state.motivo);set('c-pay',state.pay);set('c-fees',nUS(feeT)+' USD');set('c-total','$'+nUS(total));
+  set('sent-ben',state.ben);
+  set('r-ben',state.ben);set('r-type',state.type);set('r-usd','$'+nUS(state.usd));set('r-motivo',state.motivo);
+  set('r-fees',nUS(feeT)+' USD');set('r-brl','R$'+nBR(brl));set('r-total','$'+nUS(total));
+}
+
+/* KYC completion: hide banner, go home */
+function kycDone(){
+  const b=document.getElementById('kyc-cta'); if(b)b.style.display='none';
+  stack.length=0;stack.push('s-home');show('s-home');
+}
+
+/* new beneficiary: add to list and return to selection */
+function benDone(){
+  const name=document.getElementById('ben-name').value||'Novo beneficiário';
+  document.getElementById('ben-done-name').textContent=name;
+  const initials=name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const list=document.getElementById('ben-list');
+  const div=document.createElement('div');
+  div.className='pick';div.dataset.ben=name;div.setAttribute('onclick','pickBen(this)');
+  div.innerHTML='<div class="pav">'+initials+'</div><div class="pinfo"><b>'+name+'</b><span>🇧🇷 CPF ***.789-** · Beneficiário</span></div><div class="radio"></div>';
+  list.appendChild(div);
+  state.ben=name;
+  stack.length=0;stack.push('s-home','s-beneficiary');show('s-beneficiary');
+  pickBen(div);
+}
+
+/* otp */
 const otp=document.querySelectorAll('#otp input');
 otp.forEach((inp,i)=>{
   inp.addEventListener('input',()=>{if(inp.value&&i<otp.length-1)otp[i+1].focus();});
   inp.addEventListener('keydown',e=>{if(e.key==='Backspace'&&!inp.value&&i>0)otp[i-1].focus();});
 });
 let otpT=144,otpTimer;
-function fmt(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
 function startOtp(){clearInterval(otpTimer);otpT=144;otpTimer=setInterval(()=>{otpT--;document.getElementById('otp-timer').textContent=fmt(otpT);if(otpT<=0)clearInterval(otpTimer);},1000);}
 function resendOtp(){otp.forEach(o=>o.value='');otp[0].focus();startOtp();}
 startOtp();
