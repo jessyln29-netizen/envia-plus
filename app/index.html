@@ -89,7 +89,7 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
 .btn-primary{background:var(--roxo);color:#fff;}
 .btn-primary:disabled{opacity:.4;cursor:not-allowed;}
 .btn-coral{background:var(--coral);color:#fff;}
-.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.25);}
+.btn-ghost{background:transparent;color:var(--txt);border:1.5px solid var(--line);}
 .btn-light{background:var(--card);color:var(--txt);border:1.5px solid var(--line);}
 .footer-cta{padding:14px 22px calc(14px + env(safe-area-inset-bottom));position:sticky;bottom:0;background:linear-gradient(to top,var(--bg) 72%,transparent);}
 .dark .footer-cta{background:linear-gradient(to top,var(--dark) 72%,transparent);}
@@ -101,14 +101,15 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
 .login-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 30px;text-align:center;}
 .brand-lg{font-size:40px;margin-bottom:56px;justify-content:center;}
 .brand-lg .la svg{width:34px;height:34px;}
-.brand-card{align-self:center;background:#fff;border-radius:22px;padding:20px 28px;margin-bottom:52px;box-shadow:0 16px 40px rgba(0,0,0,.32);}
-.brand-img{height:52px;width:auto;display:block;}
+.brand-card{align-self:center;margin-bottom:48px;}
+.brand-img{height:60px;width:auto;display:block;}
+#s-login{background:#fff;}
 .avatar-lg{width:74px;height:74px;border-radius:50%;background:var(--roxo);color:#fff;font-size:26px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
-.login-name{color:#fff;font-size:17px;margin-bottom:4px;}
+.login-name{color:var(--txt);font-size:17px;margin-bottom:4px;}
 .login-name b{font-weight:700;}
-.login-mail{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:40px;}
-.faceid{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:44px;color:rgba(255,255,255,.7);font-size:13px;cursor:pointer;}
-.faceid svg{width:34px;height:34px;stroke:rgba(255,255,255,.8);}
+.login-mail{color:var(--muted);font-size:14px;margin-bottom:40px;}
+.faceid{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:44px;color:var(--muted);font-size:13px;cursor:pointer;}
+.faceid svg{width:34px;height:34px;stroke:var(--muted);}
 
 /* otp */
 .otp{display:flex;gap:12px;justify-content:center;margin:10px 0 24px;}
@@ -313,7 +314,7 @@ label.lbl{font-size:12px;font-weight:600;color:var(--muted);margin:2px 0 7px 2px
   <div class="stage" id="stage">
 
     <!-- LOGIN -->
-    <section class="screen dark active" id="s-login">
+    <section class="screen active" id="s-login">
       <div class="login-wrap">
         <div class="brand-card"><img src="logo_principal.png" alt="Envia+" class="brand-img" /></div>
         <div class="avatar-lg">FL</div>
@@ -838,7 +839,7 @@ document.querySelectorAll('.iconbtn').forEach(b=>{
 
 /* nav */
 const stack=['s-login'];
-const darkScreens=new Set(['s-login','s-kyc-cam-front','s-kyc-cam-back']);
+const darkScreens=new Set(['s-kyc-cam-front','s-kyc-cam-back']);
 function setStatus(id){document.getElementById('statusbar').classList.toggle('dark',darkScreens.has(id));}
 function show(id){
   const cur=document.querySelector('.screen.active');
